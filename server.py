@@ -1,4 +1,23 @@
 import socket
+import time
+
+correct_ID = "14-214"
+correct_password = "twosigma"
+
+def check_password(message):
+    for i in range(0, len(correct_password)):
+        if (i >= len(message) or message[i] != correct_password[i]):
+            return False
+        time.sleep(0.05)
+    return True
+
+def check_ID(message):
+    for i in range(0, len(correct_ID)):
+        if (i >= len(message) or message[i] != correct_ID[i]):
+            return False
+        time.sleep(0.05)
+    return True
+
 
 def start_server():
     # Create a socket object
@@ -12,7 +31,7 @@ def start_server():
     server_socket.bind((host, port))
 
     # Queue up to 5 requests
-    server_socket.listen(1)
+    server_socket.listen(5)
 
     print(f"Server listening on {host}:{port}")
 
@@ -28,31 +47,26 @@ def start_server():
         message = client_socket.recv(1024).decode()
         print(f"Received message: {message}")
 
-        # Compare the received message with a predefined string
-        correct_string = "Hello, Server!"
-        if message == correct_string:
-            response = "Valid ID Provided, Enter your Password"
+        if check_ID(message):
+            response = "Server: Valid ID Provided, Enter your Password:"
+            client_socket.send(response.encode())
             break
-        else:
-            response = "Incorrect ground station ID:. Try again."
-
+        
+        response = "Server: Incorrect ground station ID: Try again."
         client_socket.send(response.encode())
-        # Close the connection with the client
-        #client_socket.close()
+
 
     while True:
         # Establish a connection
         message = client_socket.recv(1024).decode()
         print(f"Received message: {message}")
 
-        # Compare the received message with a predefined string
-        correct_string = "Hello, Server!"
-        if message == correct_string:
-            response = "Valid Password Provided, Welcome!"
+        if check_password(message):
+            response = "Server: Valid Password, Welcome Stephen Beard!"
+            client_socket.send(response.encode())
             break
-        else:
-            response = "Incorrect ground station ID:. Try again."
-
+        
+        response = "Server: Incorrect Password: Try Again."
         client_socket.send(response.encode())
 
     client_socket.close()

@@ -9,8 +9,12 @@ def start_client(server_host, server_port):
     client_socket.connect((server_host, server_port))
 
     # Receive and print the welcome message from the server
-    message = client_socket.recv(1024).decode()
-    print(f"Server says: {message}")
+    while True:
+        message = client_socket.recv(1024).decode()
+        print(message)
+        if message == "Valid Password, Welcome Stephen Beard!":
+            break
+        client_socket.send(input().encode())
 
     # Close the connection with the server
     client_socket.close()
