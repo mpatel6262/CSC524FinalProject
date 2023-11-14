@@ -12,7 +12,7 @@ def start_client(server_host, server_port):
     while True:
         message = client_socket.recv(1024).decode()
         print(message)
-        if message == "Valid Password, Welcome Stephen Beard!":
+        if message.startswith("Server: Valid Password!"):
             break
         client_socket.send(input().encode())
 

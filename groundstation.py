@@ -1,31 +1,13 @@
 import socket
 import time
 
-correct_ID = "14-214"
-correct_password = "twosigma"
-
-def check_password(message):
-    for i in range(0, len(correct_password)):
-        if (i >= len(message) or message[i] != correct_password[i]):
-            return False
-        time.sleep(0.05)
-    return True
-
-def check_ID(message):
-    for i in range(0, len(correct_ID)):
-        if (i >= len(message) or message[i] != correct_ID[i]):
-            return False
-        time.sleep(0.05)
-    return True
-
-
 def start_server():
     # Create a socket object
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # Get local machine name
     host = socket.gethostname()
-    port = 12345  # Port to bind to
+    port = 23456  # Port to bind to
 
     # Bind to the port
     server_socket.bind((host, port))
@@ -39,20 +21,33 @@ def start_server():
     print(f"Got connection from {addr}")
 
     # Send a welcome message to the client
-    message = "Welcome to the server! Enter your ground station location ID:"
+    message = "Welcome to the ground station! Enter Authentication Step:"
     client_socket.send(message.encode())
-
     while True:
-        # Establish a connection
         message = client_socket.recv(1024).decode()
         print(f"Received message: {message}")
 
-        if check_ID(message):
-            response = "Server: Valid ID Provided, Enter your Password:"
+        try:
+            globals()["CTF_" + message](client_socket)
+        except:
+            message = "Invalid Authentication Step, Reenter authentication step:"
+            client_socket.send(message.encode())
+
+def CTF_1(client_socket):
+    message = "Enter Ground Station Location ID:"
+    client_socket.send(message.encode())
+    while True:
+        # Establish a connection
+        
+        message = client_socket.recv(1024).decode()
+        print(f"Received message: {message}")
+        time.sleep(5)
+        if message == "14-214":
+            response = "Ground Station: Valid ID Provided, Enter your Password:"
             client_socket.send(response.encode())
             break
         
-        response = "Server: Incorrect ground station location ID: Try again."
+        response = "Ground Station: Incorrect ground station location ID: Try again."
         client_socket.send(response.encode())
 
 
@@ -60,16 +55,15 @@ def start_server():
         # Establish a connection
         message = client_socket.recv(1024).decode()
         print(f"Received message: {message}")
-
-        if check_password(message):
-            response = "Server: Valid Password!\nWelcome Stephen Beard!"
+        time.sleep(5)
+        if message == "twosigma":
+            response = "\nGround Station: Valid Password!\nWelcome Stephen Beard!\n\nEnter Authentication Step:"
             client_socket.send(response.encode())
             break
         
-        response = "Server: Incorrect Password: Try Again."
+        response = "Ground Station: Incorrect Password: Try Again."
         client_socket.send(response.encode())
 
-    client_socket.close()
 
 if __name__ == "__main__":
     start_server()
