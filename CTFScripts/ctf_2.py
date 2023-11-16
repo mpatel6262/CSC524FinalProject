@@ -1,7 +1,7 @@
 import re, time, multiprocessing
 
 title = "TRUSTGUARD: A MODEL FOR PRACTICAL TRUST IN REAL SYSTEMS"
-
+solution = "^(a+)+$"
 #message = "TRUSTGUARD: A MODEL fOR PRACTICAL tRUST IN REAL SYSTEMs"
 # if message.casefold() == title.casefold():
 #     print("Pass")
