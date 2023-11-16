@@ -23,7 +23,7 @@ def CTF_1(client_socket):
         print(f"Received message: {message}")
         time.sleep(5)
         if message == "twosigma":
-            response = "\nGround Station: Valid Password!\nWelcome Stephen Beard!\nReminder: You will need your PhD dissertation title on hand for the next stage!\n\nEnter Authentication Step:"
+            response = "\nGround Station: Valid Password!\nWelcome Stephen Beard!\nReminder: You set your PhD dissertation title as Authentication Key 2.\nI'm not really sure why you did that!\n\nEnter Authentication Step:"
             client_socket.send(response.encode())
             break
         
