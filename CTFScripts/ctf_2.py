@@ -25,7 +25,7 @@ def execute_with_timeout(target_function, arguments, timeout_seconds):
         return 0
     
 def CTF_2(client_socket):
-    message = "Enter Authentication Key 1:"
+    message = "Enter Authentication Key:"
     client_socket.send(message.encode())
     while True:
         # Establish a connection
@@ -36,7 +36,7 @@ def CTF_2(client_socket):
             client_socket.send(response.encode())
             break
         
-        response = "Ground Station: Incorrect Authentication Key 1: Try again."
+        response = "Ground Station: Incorrect Authentication Key: Try again."
         client_socket.send(response.encode())
 
 
@@ -49,7 +49,7 @@ def CTF_2(client_socket):
         
         ret = execute_with_timeout(re.match, (message, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaab'), 10)
         if ret == -1:
-            response = "Nice Job! That took longer than ten seconds so clearly you know something!\nYour next authentication key will be XXX\n\nEnter Authentication Step:"
+            response = "Nice Job! That took longer than ten seconds so clearly you know something!\nYour next authentication key is your research advisor's name [FIRST LAST]. You must really like this guy!\n\nEnter Authentication Step:"
             client_socket.send(response.encode())
             return
         else:

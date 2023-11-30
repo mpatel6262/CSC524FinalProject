@@ -2,6 +2,8 @@ import socket
 import time
 from CTFScripts.ctf_1 import CTF_1
 from CTFScripts.ctf_2 import CTF_2
+from CTFScripts.ctf_3 import CTF_3
+
 def start_server():
     # Create a socket object
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
