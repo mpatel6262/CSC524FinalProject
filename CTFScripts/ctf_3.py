@@ -1,6 +1,6 @@
 key = "David August"
 
-def CTF_3(client_socket):
+def CTF_3(server_socket, client_socket):
     message = "Enter Authentication Key:"
     client_socket.send(message.encode())
     while True:

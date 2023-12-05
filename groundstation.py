@@ -3,6 +3,7 @@ import time
 from CTFScripts.ctf_1 import CTF_1
 from CTFScripts.ctf_2 import CTF_2
 from CTFScripts.ctf_3 import CTF_3
+from CTFScripts.ctf_4 import CTF_4
 
 def start_server():
     # Create a socket object
@@ -16,7 +17,7 @@ def start_server():
     server_socket.bind((host, port))
 
     # Queue up to 5 requests
-    server_socket.listen(5)
+    server_socket.listen(1000)
 
     print(f"Server listening on {host}:{port}")
 
@@ -31,7 +32,7 @@ def start_server():
         print(f"Received message: {message}")
 
         try:
-            globals()["CTF_" + message](client_socket)
+            globals()["CTF_" + message](server_socket, client_socket)
         except:
             message = "Invalid Authentication Step, Reenter authentication step:"
             client_socket.send(message.encode())

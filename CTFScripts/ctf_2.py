@@ -24,7 +24,7 @@ def execute_with_timeout(target_function, arguments, timeout_seconds):
     else:
         return 0
     
-def CTF_2(client_socket):
+def CTF_2(server_socket, client_socket):
     message = "Enter Authentication Key:"
     client_socket.send(message.encode())
     while True:

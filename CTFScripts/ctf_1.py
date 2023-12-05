@@ -1,6 +1,6 @@
 import time
 
-def CTF_1(client_socket):
+def CTF_1(server_socket, client_socket):
     message = "Enter Ground Station Location ID:"
     client_socket.send(message.encode())
     while True:
