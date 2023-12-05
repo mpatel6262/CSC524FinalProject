@@ -23,5 +23,5 @@ print(f"Correct password entered\nServer listening on {host}:XXXXX\nMake a conne
 
 client_socket, addr = server_socket.accept()
 
-message = "Congratulations, you found the right port number!\nI hope you didn't enter them manually!\nYour next authentication key is: 스티븐 비어드"
+message = "Congratulations, you found the right port number!\nI hope you didn't enter them manually!\nYour next authentication key is what you get when you translate 'Stephen Beard' to Korean? Looks like you were taking Korean lessons again..."
 client_socket.send(message.encode())

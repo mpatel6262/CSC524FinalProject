@@ -31,12 +31,14 @@ def start_server():
         message = client_socket.recv(1024).decode()
         print(f"Received message: {message}")
 
+        #globals()["CTF_" + message](server_socket, client_socket)
         try:
             globals()["CTF_" + message](server_socket, client_socket)
-        except:
+        except KeyError:
             message = "Invalid Authentication Step, Reenter authentication step:"
             client_socket.send(message.encode())
-
+        except Exception as e:
+            print(e)
 
 if __name__ == "__main__":
     start_server()

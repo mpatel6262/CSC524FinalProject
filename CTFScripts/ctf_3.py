@@ -8,7 +8,7 @@ def CTF_3(server_socket, client_socket):
         message = client_socket.recv(1024).decode()
         print(f"Received message: {message}")
         if message.casefold() == key.casefold():
-            response = "Ground Station: Valid Authentication Key Provided!\n\nWelcome to our port scanning test.\nWe know all of our users are experts of creating sockets.\nDo you remember that instance you used for your first test, the timing attack, now you can spin up the program titled CTF_3.exe\nThe password is the same authentication key, 'David August'\nOnce connected, follow the instructions to receive your next authentication key\n"
+            response = "Ground Station: Valid Authentication Key Provided!\n\nWelcome to our port scanning test.\nWe know all of our users are experts of creating sockets.\nDo you remember that instance you used for your first test, the timing attack, now you can spin up the program titled CTF_3.exe\nThe password is the same authentication key, 'David August'\nOnce connected, follow the instructions to receive your next authentication key\n\nEnter Authentication Step:"
             client_socket.send(response.encode())
             break
         
