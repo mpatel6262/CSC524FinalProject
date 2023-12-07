@@ -33,7 +33,7 @@ def CTF_4(server_socket, client_socket):
                     pass
             print(sockets_list)
             if len(sockets_list) > 50:
-                response = "Congratulations, you did it!\nYour next authentication key is XXX\n\nEnter Authentication Step:"
+                response = "Congratulations, you did it!\nThis is the current end of our CTF!\nWe hope you enjoyed and maybe will even contribute a new step or two for this project\n\nEnter Authentication Step:"
                 client_socket.send(response.encode())
                 break
             

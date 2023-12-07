@@ -75,7 +75,7 @@ def start_client(server_host, server_port):
             break
         password += max_char
         max_time = 0
-
+    print("Found ID:", final_ID)
     print("Found Password:", final_password)
 
     # Close the connection with the server
@@ -83,7 +83,7 @@ def start_client(server_host, server_port):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python client.py <server_host> <server_port>")
+        print("Usage: python ctf_1_solution.py <server_host> <server_port>")
         sys.exit(1)
 
     server_host = sys.argv[1]
