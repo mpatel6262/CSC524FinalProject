@@ -12,8 +12,6 @@ def start_client(server_host, server_port):
     while True:
         message = client_socket.recv(1024).decode()
         print(message)
-        if message.startswith("Server: Valid Password!"):
-            break
         client_socket.send(input().encode())
 
     # Close the connection with the server

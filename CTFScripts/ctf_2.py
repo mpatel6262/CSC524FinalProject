@@ -32,7 +32,7 @@ def CTF_2(server_socket, client_socket):
         message = client_socket.recv(1024).decode()
         print(f"Received message: {message}")
         if message.casefold() == title.casefold():
-            response = "Ground Station: Valid Authentication Key Provided!\nWelcome to our ReDoS test.\nWe know all of our users are experts of ReDoS.\nPretend that someone is attempting to login with password 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaab'\nProvide a Regex. pattern which would be vulnerable to this password and timeout:"
+            response = "Ground Station: Valid Authentication Key Provided!\nWelcome to our ReDoS test.\nWe know all of our users are experts of ReDoS.\n\nWhy did the coder's ReDoS algorithm tell bad jokes?\n\nBecause it got stuck in an infinite loop trying to match the perfect punchline, only to realize it was chasing a joke that was more elusive than debugging on a Monday morning!\n\nPretend that someone is attempting to login with password 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaab'\nProvide a Regex. pattern which would be vulnerable to this password and timeout:"
             client_socket.send(response.encode())
             break
         
