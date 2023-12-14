@@ -36,9 +36,13 @@ def CTF_4(server_socket, client_socket):
                 response = "Congratulations, you did it!\nThis is the current end of our CTF!\nWe hope you enjoyed and maybe will even contribute a new step or two for this project\n\nEnter Authentication Step:"
                 client_socket.send(response.encode())
                 break
-            
+                
             response = "Looks like you didnt make enough connections in time\n"
-
+            for sock in sockets_list:
+                try:
+                    sock.close()
+                except:
+                    pass
         response += "Type 'go' when you are ready\n"
         client_socket.send(response.encode())
 
